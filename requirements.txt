@@ -1,5 +1,14 @@
+annotated-types==0.7.0
 asgiref==3.8.1
 Django==5.1
 djangorestframework==3.15.2
+dnspython==2.6.1
+psycopg==3.2.1
+psycopg-binary==3.2.1
+pydantic==2.8.2
+pydantic_core==2.20.1
+pymongo==4.8.0
+python-dotenv==1.0.1
 sqlparse==0.5.1
+typing_extensions==4.12.2
 tzdata==2024.1
