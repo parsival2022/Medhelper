@@ -59,4 +59,4 @@ class TokenManager:
         if credentials:
             for key in credentials:
                 result.append(decoded_token.get(key))
-        return result
+        return tuple(result)
