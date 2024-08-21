@@ -13,8 +13,8 @@ class Authentication(TokenAuthentication):
         user_id, current_role = tm.get_credentials(token, ['current_role'])
         try:
             user = User.objects.get(id=user_id)
-            user.__setattr__('current_role', current_role)
+            user.create_auth_instance(current_role=current_role)
             return (user, token)
         except User.DoesNotExist:
-            raise exc.AuthenticationFailed('No user with provided credentials exists.', 403)
+            raise exc.AuthenticationFailed('User with provided credentials does not exist.', 403)
 

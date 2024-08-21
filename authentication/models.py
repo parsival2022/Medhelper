@@ -39,7 +39,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self) -> str:
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.patronym if self.patronym else ''} {self.last_name}'
+    
+    def create_auth_instance(self, **kwargs) -> None:
+        self.__setattr__('is_authenticated', True)
+        for k, v in kwargs.items():
+            self.__setattr__(k, v)
 
 class PatientProfile(models.Model):
     id = models.AutoField(primary_key=True)
