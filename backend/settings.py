@@ -52,14 +52,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#      'demo.verify.JWTAuthentication',
-#     ),    
-#     'DEFAULT_PERMISSION_CLASSES': (
-#     'rest_framework.permissions.IsAuthenticated',
-#     )
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+     'authentication.authentication_class.Authentication',
+    ),    
+    'DEFAULT_PERMISSION_CLASSES': (
+    'rest_framework.permissions.IsAuthenticated',
+    )
+}
 
 ROOT_URLCONF = 'backend.urls'
 
