@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils import timezone
 
 class UserManager(BaseUserManager):
@@ -18,7 +18,7 @@ class UserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self) -> str:
-        return f'{self.first_name} {self.patronym if self.patronym else ''} {self.last_name}'
+        return f"{self.first_name} {self.patronym if self.patronym else ''} {self.last_name}"
     
     def create_auth_instance(self, **kwargs) -> None:
         self.__setattr__('is_authenticated', True)
