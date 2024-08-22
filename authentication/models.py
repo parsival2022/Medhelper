@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils import timezone
+from backend.error_manager import ErrorManager as em
 
 class UserManager(BaseUserManager):
     def create_user(self, email:str, password:str | None=None, **extra_fields:dict) -> AbstractBaseUser:
         if not email or not password:
-            raise ValueError(f"The {'email' if not email else 'password'} field must be set")
+            raise em.NoRequiredCredentialsErrorResponse(f"The {'email' if not email else 'password'} field must be set")
         email = self.normalize_email(email)
         user:AbstractBaseUser = self.model(email=email, **extra_fields)
         user.set_password(password)
